@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: math-quiz-app
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn "数学练习Flask版:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16

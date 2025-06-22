@@ -30,7 +30,9 @@ score_font = pygame.font.SysFont("arial", 35)
 
 def our_snake(snake_block, snake_list):
     for x in snake_list:
-        pygame.draw.rect(dis, GREEN, [x[0], x[1], snake_block, snake_block])
+        center = (int(x[0] + snake_block // 2), int(x[1] + snake_block // 2))
+        radius = snake_block // 2  # 更饱满的圆形
+        pygame.draw.circle(dis, GREEN, center, radius)
 
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
@@ -97,8 +99,9 @@ def gameLoop():
         y1 += y1_change
         dis.fill(BLACK)
         
-        # Draw food
-        pygame.draw.rect(dis, RED, [foodx, foody, SNAKE_BLOCK, SNAKE_BLOCK])
+        # Draw food (now as circle)
+        food_center = (int(foodx + SNAKE_BLOCK // 2), int(foody + SNAKE_BLOCK // 2))
+        pygame.draw.circle(dis, RED, food_center, SNAKE_BLOCK // 2)
         
         # Update snake
         snake_head = []
